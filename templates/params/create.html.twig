@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+<div>
+    {% block title %}<h1>{{ title }}</h1>{% endblock %}
+    {{ form(param_form) }}
+</div>
+{% endblock %}

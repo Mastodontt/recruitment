@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+<div class="exams-wrapper">
+    {% block title %}<h1>{{ title }}</h1>{% endblock %}
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Created at</th>
+                <th scope="col">Description</th>
+                <th scope="col">Params</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+            {% for exam in exams %}
+            <tr>
+                <td>{{ exam.id }}</td>
+                <td>{{ exam.name }}</td>
+                <td>{{ exam.createDt|date("m/d/Y") }}</td>
+                <td>{{ exam.description }}</td>
+                <td>
+                    <ul>
+                    {% for param in exam.params %}
+                    
+                        <li>{{ param.name}} - {{ param.value }}</li>
+                    
+                    {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <a href="{{ path('app_params_create', {'id': exam.id}) }}">
+                        <button>Add param</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+</table>
+</div>
+{% endblock %}
